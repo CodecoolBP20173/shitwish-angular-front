@@ -11,28 +11,29 @@ import { OrderConfirmationComponent } from './main/order-confirmation/order-conf
 import { SearchBarComponent } from './main/product-list/search-bar/search-bar.component';
 import { ProductComponent } from './main/product-list/product/product.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    ShoppingCartComponent,
-    MainComponent,
-    ProductListComponent,
-    CheckoutComponent,
-    OrderConfirmationComponent,
-    SearchBarComponent,
-    ProductComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-      {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        ShoppingCartComponent,
+        MainComponent,
+        ProductListComponent,
+        CheckoutComponent,
+        OrderConfirmationComponent,
+        SearchBarComponent,
+        ProductComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

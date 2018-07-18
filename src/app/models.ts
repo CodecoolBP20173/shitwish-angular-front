@@ -22,9 +22,10 @@ export interface Order {
 
 export interface User {
   id: string;
-  productId: number;
+  ownProducts: number[];
   email: string;
   firstName: string;
   lastName: string;
   address: string;
+  picture: string;
 }

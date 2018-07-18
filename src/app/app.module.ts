@@ -11,6 +11,7 @@ import { OrderConfirmationComponent } from './main/order-confirmation/order-conf
 import { SearchBarComponent } from './main/product-list/search-bar/search-bar.component';
 import { ProductComponent } from './main/product-list/product/product.component';
 import {AppRoutingModule} from './app-routing.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

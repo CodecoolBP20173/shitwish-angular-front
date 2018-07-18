@@ -4,11 +4,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {ProductListComponent} from './main/product-list/product-list.component';
 import {CheckoutComponent} from './main/checkout/checkout.component';
 import {OrderConfirmationComponent} from './main/order-confirmation/order-confirmation.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
   {path: 'product-list', component: ProductListComponent},
-  {path: 'checkout', component: CheckoutComponent, canActivate: []},
-  {path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: []},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
+  {path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'product-list'}
 ];
 

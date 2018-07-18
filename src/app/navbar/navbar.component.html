@@ -1,7 +1,11 @@
 <nav class="navbar navbar-dark bg-primary">
     <a class="navbar-brand" href="#">ShitWish</a>
-    <div class="navbar-right sign-in">
-        <a href="#">Sign in with Google</a>
-        <fa-icon [icon]="faSignInAlt"></fa-icon>
+    <div *ngIf="!user" class="navbar-right sign-in">
+        <a (click)="login()">Sign in with Google</a>
+        <fa-icon [icon]="signinIcon"></fa-icon>
+    </div>
+    <div *ngIf="user" class="navbar-right sign-out">
+        <a (click)="logout()">Sign out</a>
+        <fa-icon [icon]="signOutIcon"></fa-icon>
     </div>
 </nav>

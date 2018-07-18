@@ -1,7 +1,13 @@
 .sign-in {
     color:white;
 }
-
+.sign-out {
+    color: red;
+}
 .sign-in a {
     color:white;
+}
+
+a:hover {
+    cursor: pointer;
 }

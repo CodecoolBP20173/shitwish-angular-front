@@ -1,14 +1,14 @@
-<div class="card" style="width: 16rem;">
-    <img class="card-img-top" src="https://static11.edstatic.net/product_images/280x210/resize/ifhd_dsahm9vj.jpg?v=1" alt="Card image cap">
+<div class="card">
+    <img class="card-img-top" [src]="product.imageUrl" alt="Card image cap">
     <div class="card-body">
-        <h3 class="card-title">Shitty Tablet</h3>
-        <p class="card-text"> This is a very bad tablet. If you are looking for slow and half broken product feel free to buy it.</p>
+        <h3 class="card-title">{{product.name}}</h3>
+        <p class="card-text desc">{{product.description}}</p>
         <div class="row">
             <div class="col-6">
-                <span class="float-left"><h3>459 $</h3></span>
+                <span class="float-left"><h4>{{product.price}} $</h4></span>
             </div>
             <div class="col-6">
-                <a href="#" class="btn btn-primary float-right">Add to Cart</a>
+                <button class="btn btn-primary float-right" (click)="addToCart()">Add to Cart</button>
             </div>
         </div>
     </div>

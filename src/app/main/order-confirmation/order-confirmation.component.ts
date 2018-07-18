@@ -1,15 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {OrderService} from '../../services/order.service';
 
 @Component({
-  selector: 'app-order-confirmation',
-  templateUrl: './order-confirmation.component.html',
-  styleUrls: ['./order-confirmation.component.css']
+    selector: 'app-order-confirmed',
+    templateUrl: './order-confirmed.component.html',
+    styleUrls: ['./order-confirmed.component.css']
 })
-export class OrderConfirmationComponent implements OnInit {
+export class OrderConfirmedComponent implements OnInit {
 
-  constructor() { }
+    products: any[];
+    totalPrice: number;
+    paymentId: string;
 
-  ngOnInit() {
-  }
+    constructor(private orderService: OrderService, private router: Router) {
+    }
 
+    ngOnInit() {
+        const order = this.orderService.sentOrder;
+        this.totalPrice = order.productOrders
+            .map(po => po.quantity * po.product.defaultPrice)
+            .reduce((a, b) => a + b, 0);
+        this.products = order.productOrders.map(po => {
+            return {
+                'name': po.product.name,
+                'quantity': po.quantity,
+                'price': po.product.defaultPrice,
+                'currency': po.product.defaultCurrency
+            };
+        });
+        this.paymentId = order.paymentId;
+    }
+
+    navigateBack() {
+        this.router.navigate(['/']);
+    }
 }

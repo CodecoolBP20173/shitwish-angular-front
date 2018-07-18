@@ -7,13 +7,14 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MainComponent } from './main/main.component';
 import { ProductListComponent } from './main/product-list/product-list.component';
 import { CheckoutComponent } from './main/checkout/checkout.component';
-import { OrderConfirmationComponent } from './main/order-confirmation/order-confirmation.component';
 import { SearchBarComponent } from './main/product-list/search-bar/search-bar.component';
 import { ProductComponent } from './main/product-list/product/product.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {FormsModule} from '@angular/forms';
+import {OrderConfirmedComponent} from './main/order-confirmation/order-confirmation.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         MainComponent,
         ProductListComponent,
         CheckoutComponent,
-        OrderConfirmationComponent,
+        OrderConfirmedComponent,
         SearchBarComponent,
         ProductComponent
     ],
@@ -31,7 +32,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

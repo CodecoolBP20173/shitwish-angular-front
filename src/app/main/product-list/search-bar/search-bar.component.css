@@ -1,0 +1,16 @@
+.form-group {
+    width: 20%;
+    margin-left: 40%;
+    box-sizing: border-box;
+    margin-top: 1rem;
+}
+
+input{
+    display: inline-block;
+    width: 75%;
+    margin-right: 5%;
+}
+
+.btn {
+    width: 20%;
+}

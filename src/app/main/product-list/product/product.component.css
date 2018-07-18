@@ -6,4 +6,11 @@
 
 .card {
     width: 16rem;
+    height: auto;
+}
+
+.desc {
+    height: 100px;
+    overflow-y: scroll;
+    overflow-scrolling: auto;
 }

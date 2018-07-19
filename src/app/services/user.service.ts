@@ -16,7 +16,6 @@ export class UserService {
     getUserProfile() {
         this.http.get<User>(this.USERS_ENDPOINT).subscribe(user => {
             this.user.next(user);
-            console.log(user);
         });
     }
 

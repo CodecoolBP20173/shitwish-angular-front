@@ -16,6 +16,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {OrderConfirmationComponent} from './main/order-confirmation/order-confirmation.component';
 import {ShoppingCartItemComponent} from './shopping-cart/shopping-cart-item/shopping-cart-item.component';
+import {UploadItemComponent} from './main/upload-item/upload-item.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import {ShoppingCartItemComponent} from './shopping-cart/shopping-cart-item/shop
         OrderConfirmationComponent,
         SearchBarComponent,
         ProductComponent,
-        ShoppingCartItemComponent
+        ShoppingCartItemComponent,
+        UploadItemComponent
     ],
     imports: [
         BrowserModule,

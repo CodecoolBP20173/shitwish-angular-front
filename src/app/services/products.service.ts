@@ -46,4 +46,9 @@ export class ProductsService {
     fetchProduct(id: number): Promise<Product> {
         return this.http.get<Product>(`${this.PRODUCT_ENDPOINT}/${id}`).toPromise();
     }
+
+    addItem(item) {
+        console.log(item);
+        this.http.post(this.PRODUCT_ENDPOINT, item).subscribe((value) => console.log(value));
+    }
 }

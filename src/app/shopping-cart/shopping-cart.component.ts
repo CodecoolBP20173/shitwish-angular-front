@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {Product} from '../models';
-import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -11,7 +10,7 @@ import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 })
 export class ShoppingCartComponent implements OnInit {
     products: Product[] = [];
-    faTrashAlt = faTrashAlt;
+
 
     constructor(private route: ActivatedRoute, private userService: UserService) {
     }
@@ -39,4 +38,11 @@ export class ShoppingCartComponent implements OnInit {
         );
     }
 
+    clearCart() {
+
+    }
+
+    proceedToCheckout() {
+
+    }
 }

@@ -1,20 +1,19 @@
-<div class="cart" *ngFor="let product of products">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-3">
-                    <img src="{{product.imageUrl}}" alt="">
-                </div>
-                <div class="col-6">
-                    <span class="float-left">
-                    <span>{{product.name}}</span>
-                    <h3>{{product.price}} $</h3>
-                    </span>
-                </div>
-                <div class="col-3">
-                    <fa-icon class="float-right" [icon]="faTrashAlt"></fa-icon>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h4>Sum: 5000 $</h4>
         </div>
+        <div class="col-3 offset-2">
+            <button (click)="clearCart()" class="btn btn-warning">Clear Cart</button>
+        </div>
+    </div>
+</div>
+<div class="cart" *ngFor="let product of products">
+    <app-shopping-cart-item [product]="product"></app-shopping-cart-item>
+</div>
+<div class="container">
+    <div class="row">
+        <button (click)="proceedToCheckout()" class="btn btn-success col-10 offset-1 buy-button">Proceed to Checkout
+        </button>
     </div>
 </div>

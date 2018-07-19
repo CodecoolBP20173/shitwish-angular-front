@@ -3,6 +3,8 @@ import {Cart, Product} from '../models';
 import {CartService} from '../services/cart.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
+import {ProductsService} from '../services/products.service';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -15,31 +17,20 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     products: Product[] = [];
     private cartSubscription: Subscription;
 
-    constructor(private cartService: CartService, private router: Router) {
+    constructor(
+        private cartService: CartService,
+        private productService: ProductsService,
+        private router: Router
+    ) {
     }
 
     ngOnInit() {
-        this.cartSubscription = this.cartService.cart.subscribe();
-        // this.products.push({
-        //         id: 1,
-        //         userId: 'asd',
-        //         name: 'Some product',
-        //         category: 'Test category',
-        //         imageUrl: 'https://static11.edstatic.net/product_images/280x210/resize/ifhd_dsahm9vj.jpg?v=1',
-        //         description: 'This is a very bad tablet. If you are looking for slow and half broken product feel free to buy it.',
-        //         price: 1012
-        //     }
-        // );
-        // this.products.push({
-        //         id: 2,
-        //         userId: 'asd',
-        //         name: 'Some other product',
-        //         category: 'Test category',
-        //         imageUrl: 'http://media.4rgos.it/i/Argos/5654327_R_Z001A?$Web$&$DefaultPDP570$',
-        //         description: 'This is a very bad tablet. If you are looking for slow and half broken product feel free to buy it.',
-        //         price: 420
-        //     }
-        // );
+        this.cartSubscription = this.cartService.cart
+            .pipe(tap(cart => console.log(cart)))
+            .subscribe(cart => {
+                this.cart = cart;
+                this.mapProducts(cart.products.map(lineItem => lineItem.id));
+            });
     }
 
     clearCart() {
@@ -54,5 +45,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
         if (this.cart != null) {
             this.router.navigate(['/checkout']);
         }
+    }
+
+    private async mapProducts(productIds: number[]) {
+        this.products = await Promise.all(productIds.map(id => this.productService.fetchProduct(id)));
     }
 }

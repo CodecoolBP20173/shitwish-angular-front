@@ -14,6 +14,7 @@ export class ProductsService {
     searchTerms = new Subject<string>();
     private readonly PRODUCTS_QUERY_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/product/search/findAllByName';
     private readonly PRODUCTS_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/products';
+    private readonly PRODUCT_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/product';
 
     constructor(private http: HttpClient) {
         this.searchTerms.pipe(
@@ -40,5 +41,9 @@ export class ProductsService {
             this.http.get<Product[]>(this.PRODUCTS_ENDPOINT)
                 .subscribe(products => this.products.next(products))
         }
+    }
+
+    fetchProduct(id: number): Promise<Product> {
+        return this.http.get<Product>(`${this.PRODUCTS_ENDPOINT}/${id}`).toPromise();
     }
 }

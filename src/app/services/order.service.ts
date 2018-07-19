@@ -13,7 +13,7 @@ export class OrderService implements OnDestroy {
     private cart: Cart;
 
     constructor(private cartService: CartService, private userService: UserService) {
-        this.cartSub = cartService.cart.subscribe(cart => this.cart = cart);
+        //this.cartSub = cartService.cart.subscribe(cart => this.cart = cart);
     }
 
     sendOrder(address: Address) {

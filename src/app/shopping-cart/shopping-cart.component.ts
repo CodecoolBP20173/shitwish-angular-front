@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../services/user.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../models';
+import {CartService} from '../services/cart.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-shopping-cart',
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
+
     products: Product[] = [];
+    private cartSubscription: Subscription;
 
-
-    constructor() {
+    constructor(private cartService: CartService) {
     }
 
     ngOnInit() {
+        this.cartSubscription = this.cartService.cart.subscribe();
         // this.products.push({
         //         id: 1,
         //         userId: 'asd',
@@ -39,7 +41,11 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     clearCart() {
+        this.cartService.deleteCart();
+    }
 
+    ngOnDestroy(): void {
+        this.cartSubscription.unsubscribe();
     }
 
     proceedToCheckout() {

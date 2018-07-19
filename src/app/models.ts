@@ -15,7 +15,7 @@ export interface Cart {
 }
 
 export interface LineItem {
-    product: Product;
+    id: number;
     amount: number;
 }
 

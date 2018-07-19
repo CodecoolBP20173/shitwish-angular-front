@@ -10,4 +10,8 @@ export class CartService {
     cart = new BehaviorSubject<Cart>(null);
 
     constructor() { }
+
+    addToCart(id: number) {
+
+    }
 }

@@ -1,4 +1,4 @@
-<div class="container" *ngIf="products.length > 0">
+<div class="container" *ngIf="products.length > 0 && isShopping">
     <div class="row">
         <div class="col-6">
             <h4>Sum: {{ calculateSum() }} $</h4>
@@ -26,7 +26,7 @@
         </div>
     </div>
 </ng-template>
-<div class="container" *ngIf="products.length > 0">
+<div class="container" *ngIf="products.length > 0 && isShopping">
     <div class="row">
         <button (click)="proceedToCheckout()" class="btn btn-success col-10 offset-1 buy-button">Proceed to Checkout
         </button>

@@ -2,10 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Cart, Product} from '../models';
 import {CartService} from '../services/cart.service';
 import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router, UrlSegment} from '@angular/router';
 import {tap} from 'rxjs/operators';
 import {ProductsService} from '../services/products.service';
 import {UserService} from '../services/user.service';
+import {OrderService} from '../services/order.service';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -18,14 +19,17 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     products: Product[] = [];
     amounts = new Map<number, number>();
     userLoggedIn = false;
+    isShopping: boolean;
     private cartSubscription: Subscription;
     private userSub: Subscription;
+    private shoppingSub: Subscription;
 
     constructor(
         private cartService: CartService,
         private productService: ProductsService,
         private router: Router,
-        private userService: UserService
+        private userService: UserService,
+        private orderService: OrderService
     ) {
     }
 
@@ -40,6 +44,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
                 }
             });
         this.userSub = this.userService.user.subscribe(user => this.userLoggedIn = user !== null);
+        this.shoppingSub = this.orderService.isShopping.subscribe(isShopping => this.isShopping = isShopping);
     }
 
     clearCart() {
@@ -49,6 +54,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     proceedToCheckout() {
         if (this.cart != null) {
             this.router.navigate(['/checkout']);
+            this.orderService.isShopping.next(false);
         }
     }
 
@@ -67,5 +73,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.cartSubscription.unsubscribe();
         this.userSub.unsubscribe();
+        this.shoppingSub.unsubscribe();
     }
 }

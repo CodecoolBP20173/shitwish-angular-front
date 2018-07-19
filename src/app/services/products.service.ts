@@ -44,6 +44,6 @@ export class ProductsService {
     }
 
     fetchProduct(id: number): Promise<Product> {
-        return this.http.get<Product>(`${this.PRODUCTS_ENDPOINT}/${id}`).toPromise();
+        return this.http.get<Product>(`${this.PRODUCT_ENDPOINT}/${id}`).toPromise();
     }
 }

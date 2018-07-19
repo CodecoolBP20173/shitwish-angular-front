@@ -15,6 +15,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
     cart: Cart;
     products: Product[] = [];
+    amounts = new Map<number, number>();
     private cartSubscription: Subscription;
 
     constructor(
@@ -31,6 +32,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
                 this.cart = cart;
                 if (cart && cart.products) {
                     this.mapProducts(cart.products.map(lineItem => lineItem.id));
+                    cart.products.forEach(lineItem => this.amounts.set(lineItem.id, lineItem.amount));
                 }
             });
     }

@@ -29,11 +29,11 @@ export class CartService implements OnDestroy {
         this.http.delete<Cart>(this.CART_ENDPOINT).subscribe(cart => this.cart.next(cart));
     }
 
-    removeItem(id: number) {
+    removeProduct(id: number) {
         this.http.delete<Cart>(this.CART_ENDPOINT + '/' + id).subscribe(cart => this.cart.next(cart));
     }
 
-    removeProduct(id: number) {
+    removeItem(id: number) {
         this.http.post<Cart>(this.CART_ENDPOINT + '/' + id, {'amount': -1}).subscribe(cart => this.cart.next(cart));
     }
 

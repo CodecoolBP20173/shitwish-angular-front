@@ -19,6 +19,9 @@ export class ShoppingCartItemComponent implements OnInit {
     @Input('product')
     product: Product;
 
+    @Input('amount')
+    amount: number;
+
     constructor(private cartService: CartService) {
     }
 

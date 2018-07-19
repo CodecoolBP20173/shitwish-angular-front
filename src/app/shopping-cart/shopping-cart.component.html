@@ -8,8 +8,10 @@
         </div>
     </div>
 </div>
+<div *ngIf="cart != null">
 <div class="cart" *ngFor="let product of products">
-    <app-shopping-cart-item [product]="product"></app-shopping-cart-item>
+    <app-shopping-cart-item [product]="product" [amount]="amounts.get(product.id)"></app-shopping-cart-item>
+</div>
 </div>
 <div class="container">
     <div class="row">

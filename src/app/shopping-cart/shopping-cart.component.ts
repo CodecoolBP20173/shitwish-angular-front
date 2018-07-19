@@ -54,4 +54,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     private async mapProducts(productIds: number[]) {
         this.products = await Promise.all(productIds.map(id => this.productService.fetchProduct(id)));
     }
+
+    calculateSum() {
+        if (this.products.length > 0) {
+            return this.products
+                .map(product => product.price * this.amounts.get(product.id))
+                .reduce((a, b) => a + b);
+        }
+    }
 }

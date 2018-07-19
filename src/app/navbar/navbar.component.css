@@ -1,11 +1,14 @@
 .sign-in {
     color:white;
+    font-weight: bold;
 }
 .sign-out {
-    color: red;
+    color: white;
+    font-weight: bold;
 }
 .sign-in a {
     color:white;
+    font-weight: bold;
 }
 
 a:hover {

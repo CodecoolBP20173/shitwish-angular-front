@@ -29,7 +29,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
             .pipe(tap(cart => console.log(cart)))
             .subscribe(cart => {
                 this.cart = cart;
-                this.mapProducts(cart.products.map(lineItem => lineItem.id));
+                if (cart && cart.products) {
+                    this.mapProducts(cart.products.map(lineItem => lineItem.id));
+                }
             });
     }
 

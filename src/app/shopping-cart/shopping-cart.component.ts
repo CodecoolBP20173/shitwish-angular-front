@@ -12,7 +12,7 @@ export class ShoppingCartComponent implements OnInit {
     products: Product[] = [];
 
 
-    constructor(private route: ActivatedRoute, private userService: UserService) {
+    constructor() {
     }
 
     ngOnInit() {

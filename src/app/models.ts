@@ -1,5 +1,3 @@
-import {Line} from 'tslint/lib/verify/lines';
-
 export interface Product {
   id: number;
   userId: string;
@@ -17,7 +15,7 @@ export interface Cart {
 }
 
 export interface LineItem {
-    product: Product;
+    id: number;
     amount: number;
 }
 
@@ -30,7 +28,7 @@ export interface Order {
 
 export interface User {
   id: string;
-  ownProducts: number[];
+  productId: number[];
   email: string;
   firstName: string;
   lastName: string;

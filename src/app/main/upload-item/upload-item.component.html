@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <form class="form-control" #addressForm="ngForm" (ngSubmit)="onUpload()">
+        <div class="headline">
+            <h2>New Shitty Item</h2>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" name="name" required ngModel>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input class="form-control" type="text" id="category" name="category" required ngModel>
+        </div>
+        <div class="form-group">
+            <label for="imageUrl">Image URL</label>
+            <input class="form-control" type="url" id="imageUrl" name="imageUrl" required ngModel>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" id="description" name="description" required ngModel>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input class="form-control" type="number" id="price" name="price" required ngModel>
+        </div>
+        <button class="btn btn-primary" type="submit">Upload Item</button>
+    </form>
+</div>

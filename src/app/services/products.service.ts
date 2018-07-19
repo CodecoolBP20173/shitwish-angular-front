@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, tap} from 'rxjs/operators';
 import {Product} from '../models';
 import {HttpClient} from '@angular/common/http';
+import {pick} from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class ProductsService {
 
     products = new BehaviorSubject<Product[]>([]);
     searchTerms = new Subject<string>();
-    private readonly PRODUCTS_ENDPOINT = '';
+    private readonly PRODUCTS_QUERY_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/product/search/findAllByName';
+    private readonly PRODUCTS_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/products';
+    private readonly PRODUCT_ENDPOINT = 'https://shitwish-product-motivetee.herokuapp.com/product';
 
     constructor(private http: HttpClient) {
         this.searchTerms.pipe(
@@ -21,8 +24,31 @@ export class ProductsService {
     }
 
     fetchProducts(term?: string) {
-        // TODO: make sure the term is uri encoded
-        this.http.get<Product[]>(`${this.PRODUCTS_ENDPOINT}/?${term ? `query=${term}&` : ''}limit=20&offset=0`)
-            .subscribe(products => this.products.next(products));
+        if (term) {
+            this.http.get<any>(`${this.PRODUCTS_QUERY_ENDPOINT}?query=${term}`)
+                .pipe(
+                    map((response: any) => {
+                        const products = response._embedded.products;
+                        return products.map(product => {
+                            return {
+                                ...pick(product, ['userId', 'name', 'category', 'imageUrl', 'description', 'price']),
+                                id: product._links.self.href.replace(/^.+\//, '')}
+                        });
+                    })
+                )
+                .subscribe(products => this.products.next(products));
+        } else {
+            this.http.get<Product[]>(this.PRODUCTS_ENDPOINT)
+                .subscribe(products => this.products.next(products))
+        }
+    }
+
+    fetchProduct(id: number): Promise<Product> {
+        return this.http.get<Product>(`${this.PRODUCT_ENDPOINT}/${id}`).toPromise();
+    }
+
+    addItem(item) {
+        console.log(item);
+        this.http.post(this.PRODUCT_ENDPOINT, item).subscribe((value) => console.log(value));
     }
 }

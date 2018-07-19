@@ -13,3 +13,7 @@
     height: 100px;
     overflow-y: auto;
 }
+
+img {
+    height: 180px;
+}

@@ -1,6 +1,22 @@
-<div class="search-bar">
-    <form class="form-group">
-        <input type="text" class="form-control" placeholder="Search.." name="search">
-        <button type="submit" class="btn btn-primary"><fa-icon [icon]="faSearch"></fa-icon></button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a routerLink="/upload-item" class="btn btn-primary">Upload new Item</a>
+        </div>
+        <div class="col-6">
+            <div class="search-bar">
+                <form>
+                    <input #term type="text" class="form-control" placeholder="Search.." name="search"
+                           (input)="onSearch(term.value)">
+                </form>
+            </div>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+        </div>
+    </div>
 </div>
+
+

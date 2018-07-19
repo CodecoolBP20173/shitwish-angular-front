@@ -3,6 +3,7 @@ import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Product} from '../../models';
 import {faMinus} from '@fortawesome/free-solid-svg-icons/faMinus';
 import {faPlus} from '@fortawesome/free-solid-svg-icons/faPlus';
+import {CartService} from '../../services/cart.service';
 
 @Component({
     selector: 'app-shopping-cart-item',
@@ -18,10 +19,21 @@ export class ShoppingCartItemComponent implements OnInit {
     @Input('product')
     product: Product;
 
-    constructor() {
+    constructor(private cartService: CartService) {
     }
 
     ngOnInit() {
     }
 
+    addItem() {
+
+    }
+
+    removeItem() {
+
+    }
+
+    removeProduct() {
+
+    }
 }

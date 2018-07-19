@@ -18,7 +18,12 @@
         <div class="card-header">
             Your Cart is Empty
         </div>
-        <div class="card-body"> Add item to cart to proceed</div>
+        <div class="card-body" *ngIf="userLoggedIn">
+            Add item to cart to proceed
+        </div>
+        <div class="card-body" *ngIf="!userLoggedIn">
+            Log in to add to Cart
+        </div>
     </div>
 </ng-template>
 <div class="container" *ngIf="products.length > 0">

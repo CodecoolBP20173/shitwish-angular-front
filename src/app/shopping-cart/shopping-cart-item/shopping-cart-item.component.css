@@ -1,0 +1,23 @@
+.card-body img {
+    width: 60px;
+}
+
+.cart {
+    margin-top: 5px;
+}
+
+.card {
+    margin: 5px;
+}
+
+.p-2 {
+    padding: 0;
+}
+
+.green-icon {
+    color: green;
+}
+
+.red-icon {
+    color: red;
+}

@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <img src="{{product.imageUrl}}" alt="">
+            </div>
+            <div class="col-5">
+                    <span class="float-left">
+                    <span>{{product.name}}</span>
+                    <h4>{{product.price}} $</h4>
+                    </span>
+            </div>
+            <div class="col-2">
+                <div class="row align-items-center">
+                    <div class="justify-content-center">
+                        <fa-icon class="float-right green-icon" [icon]="faPlus"></fa-icon>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="justify-content-center">5</div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="justify-content-center">
+                        <fa-icon class="float-right red-icon" [icon]="faMinus"></fa-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <fa-icon class="alaign-self-end" [icon]="faTrashAlt"></fa-icon>
+            </div>
+        </div>
+    </div>
+</div>

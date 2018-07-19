@@ -15,6 +15,7 @@ import {AuthInterceptor} from './auth/auth.interceptor';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {OrderConfirmationComponent} from './main/order-confirmation/order-confirmation.component';
+import {ShoppingCartItemComponent} from './shopping-cart/shopping-cart-item/shopping-cart-item.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {OrderConfirmationComponent} from './main/order-confirmation/order-confir
         CheckoutComponent,
         OrderConfirmationComponent,
         SearchBarComponent,
-        ProductComponent
+        ProductComponent,
+        ShoppingCartItemComponent
     ],
     imports: [
         BrowserModule,

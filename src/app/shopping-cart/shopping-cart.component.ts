@@ -35,7 +35,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.cartSubscription = this.cartService.cart
-            .pipe(tap(cart => console.log(cart)))
             .subscribe(cart => {
                 this.cart = cart;
                 if (cart && cart.products) {

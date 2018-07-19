@@ -1,6 +1,6 @@
 <div class="search-bar">
     <form class="form-group">
-        <input type="text" class="form-control" placeholder="Search.." name="search">
+        <input #term type="text" class="form-control" placeholder="Search.." name="search" (input)="onSearch(term.value)">
         <button type="submit" class="btn btn-primary"><fa-icon [icon]="faSearch"></fa-icon></button>
     </form>
 </div>

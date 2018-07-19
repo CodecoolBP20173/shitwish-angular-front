@@ -8,13 +8,16 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class UserService {
 
-    private readonly USERS_ENDPOINT = '';
+    private readonly USERS_ENDPOINT = 'https://shitwish-user-service-bp20173.herokuapp.com/users';
     user = new BehaviorSubject<User>(null);
 
     constructor(private http: HttpClient) { }
 
     getUserProfile() {
-        this.http.get<User>(this.USERS_ENDPOINT).subscribe(user => this.user.next(user));
+        this.http.get<User>(this.USERS_ENDPOINT).subscribe(user => {
+            this.user.next(user);
+            console.log(user);
+        });
     }
 
     removeUserProfile() {

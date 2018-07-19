@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {ProductsService} from '../../../services/products.service';
 
 
 @Component({
@@ -10,9 +11,12 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons';
 export class SearchBarComponent implements OnInit {
     faSearch = faSearch;
 
-  constructor() { }
+    constructor(private productService: ProductsService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    onSearch(term: string) {
+        this.productService.searchTerms.next(term);
+    }
 }

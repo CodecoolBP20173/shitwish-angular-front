@@ -1,0 +1,129 @@
+$fancy-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+$green: #4CAF50;
+$red: #e51c23;
+$dark: #222;
+$blue: #2196F3;
+
+@mixin colored-shadow($color) {
+  box-shadow: 1px 1px 5px 2px rgba($color, 0.6);
+}
+
+.bouncy {
+    animation: bounce-in 0.5s ease-out;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+.post-form {
+  max-height: 20rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.editor {
+  display: inline-block;
+  position: relative;
+  width: 45%;
+}
+
+.preview {
+  display: inline-block;
+  position: relative;
+  margin-left: 5%;
+  width: 45%;
+}
+
+.preview-image {
+  max-height: 15rem;
+  width: auto;
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+}
+
+.pane {
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: $fancy-shadow;
+  margin-bottom: 0.5rem;
+}
+.center-block {
+  width: 30rem;
+  margin: 0 auto
+}
+
+input + .helper-text {
+  display: none;
+}
+
+.form-control {
+
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+    @include colored-shadow(red);
+  }
+
+  &.ng-invalid.ng-touched + .helper-text {
+    display: block;
+  }
+
+  &.ng-pending {
+    animation: flashingBorder 1s infinite;
+  }
+}
+@keyframes flashingBorder {
+  0% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 1px 1px 5px 3px purple;
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+@keyframes hover-up {
+    0% {
+        box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
+        transform: translateY(0px);
+    }
+    50% {
+        box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+        transform: translateY(-10px);
+    }
+    100% {
+        box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
+        transform: translateY(0px);
+    }
+}
+
+@keyframes bounce-in {
+    0%{
+        opacity: 0;
+        transform: scale(0.3) translate3d(0,0,0);
+    }
+    50%{
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+    80%{
+        opacity: 1;
+        transform: scale(0.89);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) translate3d(0,0,0);
+    }
+}
+

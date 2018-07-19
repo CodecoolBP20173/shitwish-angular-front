@@ -1,11 +1,13 @@
 <nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">ShitWish</a>
+    <a class="navbar-brand" routerLink="/">ShitWish</a>
     <div *ngIf="!user" class="navbar-right sign-in">
-        <a (click)="login()">Sign in with Google</a>
-        <fa-icon [icon]="signinIcon"></fa-icon>
+        <a (click)="login()">Sign in with Google
+            <fa-icon [icon]="signinIcon"></fa-icon>
+        </a>
     </div>
     <div *ngIf="user" class="navbar-right sign-out">
-        <a (click)="logout()">Sign out</a>
-        <fa-icon [icon]="signOutIcon"></fa-icon>
+        <a (click)="logout()">Sign out
+            <fa-icon [icon]="signOutIcon"></fa-icon>
+        </a>
     </div>
 </nav>

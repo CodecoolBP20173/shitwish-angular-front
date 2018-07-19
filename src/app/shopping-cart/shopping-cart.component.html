@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="products.length > 0">
     <div class="row">
         <div class="col-6">
             <h4>Sum: {{ calculateSum() }} $</h4>
@@ -8,12 +8,25 @@
         </div>
     </div>
 </div>
-<div *ngIf="cart != null">
-<div class="cart" *ngFor="let product of products">
-    <app-shopping-cart-item [product]="product" [amount]="amounts.get(product.id)"></app-shopping-cart-item>
+<div *ngIf="products.length > 0; else emptyCart">
+    <div class="cart" *ngFor="let product of products">
+        <app-shopping-cart-item [product]="product" [amount]="amounts.get(product.id)"></app-shopping-cart-item>
+    </div>
 </div>
-</div>
-<div class="container">
+<ng-template #emptyCart>
+    <div class="card">
+        <div class="card-header">
+            Your Cart is Empty
+        </div>
+        <div class="card-body" *ngIf="userLoggedIn">
+            Add item to cart to proceed
+        </div>
+        <div class="card-body" *ngIf="!userLoggedIn">
+            Log in to add to Cart
+        </div>
+    </div>
+</ng-template>
+<div class="container" *ngIf="products.length > 0">
     <div class="row">
         <button (click)="proceedToCheckout()" class="btn btn-success col-10 offset-1 buy-button">Proceed to Checkout
         </button>

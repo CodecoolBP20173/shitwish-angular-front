@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs/operators';
 import {ProductsService} from '../services/products.service';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -16,12 +17,15 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     cart: Cart;
     products: Product[] = [];
     amounts = new Map<number, number>();
+    userLoggedIn = false;
     private cartSubscription: Subscription;
+    private userSub: Subscription;
 
     constructor(
         private cartService: CartService,
         private productService: ProductsService,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) {
     }
 
@@ -35,14 +39,11 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
                     cart.products.forEach(lineItem => this.amounts.set(lineItem.id, lineItem.amount));
                 }
             });
+        this.userSub = this.userService.user.subscribe(user => this.userLoggedIn = user !== null);
     }
 
     clearCart() {
         this.cartService.deleteCart();
-    }
-
-    ngOnDestroy(): void {
-        this.cartSubscription.unsubscribe();
     }
 
     proceedToCheckout() {
@@ -61,5 +62,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
                 .map(product => product.price * this.amounts.get(product.id))
                 .reduce((a, b) => a + b);
         }
+    }
+
+    ngOnDestroy(): void {
+        this.cartSubscription.unsubscribe();
+        this.userSub.unsubscribe();
     }
 }

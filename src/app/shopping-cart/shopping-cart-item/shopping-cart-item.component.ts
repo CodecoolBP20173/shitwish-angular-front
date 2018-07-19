@@ -26,14 +26,14 @@ export class ShoppingCartItemComponent implements OnInit {
     }
 
     addItem() {
-
+        this.cartService.addToCart(this.product.id);
     }
 
     removeItem() {
-
+        this.cartService.removeItem(this.product.id);
     }
 
     removeProduct() {
-
+        this.cartService.removeProduct(this.product.id);
     }
 }

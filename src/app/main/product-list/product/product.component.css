@@ -11,6 +11,5 @@
 
 .desc {
     height: 100px;
-    overflow-y: scroll;
-    overflow-scrolling: auto;
+    overflow-y: auto;
 }
